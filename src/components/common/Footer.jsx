@@ -15,8 +15,8 @@ const Footer = () => {
                             혁신적 호텔 여행의 모든 순간, HotelHub과 함께하세요.
                         </p>
                     </div>
-                    <div className="footer-menu">
 
+                    <div className="footer-menu">
                         <div className="link-columns">
                             {footerNavData.map((column, columnIndex) => (
                                 <div key={columnIndex} className="link-column">
@@ -62,7 +62,9 @@ const Footer = () => {
                             주소: 서울특별시 강남구 테헤란로 123, 4567 | 통신판매업신고:
                             제2025-서울강남-1234호
                         </div>
-                        <div className="copyright">© 2025 HotelHub Inc. All rights reserved.</div>
+                        <div className="copyright">
+                            © 2025 HotelHub Inc. All rights reserved.
+                        </div>
                     </div>
                     <div className="footer-contact">
                         <div className="contact-info">

@@ -3,14 +3,14 @@ import "../../styles/components/home/MalakaTour.scss";
 
 const MalakaTour = () => {
   return (
-<div className="malaka-tour">
-  <div className="tour-header">
-    <h3 className="tour-title">말라카 투어</h3>
-    <div className="price-tag">
-      <span>From</span>
-      <strong>$700</strong>
-    </div>
-  </div>
+    <div className="malaka-tour">
+      <div className="tour-header">
+        <h3 className="tour-title">말라카 투어</h3>
+        <div className="price-tag">
+          <span>From</span>
+          <strong>$700</strong>
+        </div>
+      </div>
 
       <p className="tour-desc">
         오래된 시간의 숨결이 머무는 도시, 말라카(Melaka). <br />
