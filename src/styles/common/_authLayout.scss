@@ -2,192 +2,313 @@
 
 // 공통 Auth/Form 레이아웃 스타일
 .auth-layout-page {
+ min-height: 100vh;
+ background: $color-bg;
+
+ .auth-layout-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+ }
+
+ .auth-layout-content {
+  display: flex;
+  width: 100%;
   min-height: 100vh;
+
+  @media (max-width: $breakpoint-md) {
+   flex-direction: column;
+
+   .auth-layout-image-section {
+    display: none;
+   }
+  }
+ }
+
+ .auth-layout-form-section {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-xxxl $spacing-lg;
   background: $color-bg;
+ }
 
-  .auth-layout-container {
+ .auth-layout-image-section {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: $gradient-gray-medium;
+
+  .auth-layout-image-wrapper {
+   width: 100%;
+   height: 100%;
+   position: relative;
+
+   .auth-layout-image {
     width: 100%;
-    margin: 0 auto;
-    padding: 0;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+   }
   }
-
-  .auth-layout-content {
-    display: flex;
-    width: 100%;
-    min-height: 100vh;
-
-    @media (max-width: $breakpoint-md) {
-      flex-direction: column;
-
-      .auth-layout-image-section {
-        display: none;
-      }
-    }
-  }
-
-  .auth-layout-form-section {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-    padding: $spacing-xxxl $spacing-lg;
-    background: $color-bg;
-  }
-
-  .auth-layout-image-section {
-    flex: 1;
-    position: relative;
-    overflow: hidden;
-
-    /* 🔥 기존 파란색 그라데이션 → 그린 계열로 변경 */
-    background: linear-gradient(135deg, #2fb98d, #1f7d62);
-
-    .auth-layout-image-wrapper {
-      width: 100%;
-      height: 100%;
-      position: relative;
-
-      .auth-layout-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-      }
-    }
-  }
+ }
 }
 
 // 공통 폼 스타일
 .common-form {
-  width: 100%;
-  max-width: 42rem;
-  padding: 0;
+ width: 100%;
+ max-width: 42rem;
+ padding: 0;
 
   .form-header,
   .payment-header {
-    margin-bottom: $spacing-xxl;
-    text-align: left;
+   margin-bottom: $spacing-xxl;
+   text-align: left;
 
-    .back-button {
-      background: none;
-      border: none;
-      font-size: $font-size-sm;
-      color: darken(#279c79, 20%);  // 짙은 초록 회색 느낌
-      cursor: pointer;
-      margin-bottom: $spacing-md;
-      padding: 0;
+   .back-button {
+    background: none;
+    border: none;
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    cursor: pointer;
+    margin-bottom: $spacing-md;
+    padding: 0;
 
-      &:hover {
-        color: #279c79;    // 메인 컬러
-        transition: color 0.2s ease;
-      }
+    &:hover {
+     color: $color-primary;
+     transition: color 0.2s ease;
     }
+   }
 
-    .form-title,
-    .payment-title {
-        color: #279c79 !important;
-      font-size: 3.2rem;
-      font-weight: 700;
-      color: $color-text;
-      margin-bottom: $spacing-xs;
-      line-height: $line-height-tight;
-    }
+   .form-title,
+   .payment-title {
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: #279c79;
+    margin-bottom: $spacing-xs;
+    line-height: $line-height-tight;
+   }
 
-    .form-subtitle,
-    .payment-subtitle {
-      font-size: $font-size-base;
-      color: darken(#279c79, 20%) !important; // 초록 계열 보조 텍스트
-      margin: 0;
-      line-height: $line-height-base;
-    }
+   .form-subtitle,
+   .payment-subtitle {
+    font-size: $font-size-base;
+    color: $color-text-secondary;
+    margin: 0;
+    line-height: $line-height-base;
+   }
   }
 
-  .form-content {
+ .form-content {
+  .error-message {
+   background: #fee2e2;
+   color: #dc2626;
+   padding: $spacing-sm;
+   border-radius: $border-radius-md;
+   font-size: $font-size-sm;
+   margin-bottom: $spacing-lg;
+   border: 1px solid #fecaca;
+  }
 
-    .error-message {
-      background: #fee2e2;
-      color: #dc2626;
-      padding: $spacing-sm;
-      border-radius: $border-radius-md;
-      font-size: $font-size-sm;
-      margin-bottom: $spacing-lg;
-      border: 1px solid #fecaca;
+  .form-row {
+   display: grid;
+   grid-template-columns: 1fr;
+   gap: $spacing-md;
+   margin-bottom: $spacing-xl;
+
+   @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+   }
+  }
+
+  .form-group {
+   margin-bottom: $spacing-xl;
+
+   .form-row & {
+    margin-bottom: 0;
+   }
+
+   .form-label {
+    display: block;
+    font-size: $font-size-sm;
+    font-weight: 500;
+    color: $color-text;
+    margin-bottom: $spacing-xs;
+   }
+
+
+   .form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right $spacing-sm center;
+    background-repeat: no-repeat;
+    background-size: 1.6rem;
+    cursor: pointer;
+   }
+
+   .password-input-wrapper {
+    position: relative;
+
+    .password-toggle {
+     position: absolute;
+     right: $spacing-md;
+     top: 50%;
+     transform: translateY(-50%);
+     background: none;
+     border: none;
+     font-size: $font-size-base;
+     color: $color-text-muted;
+     cursor: pointer;
+     padding: 0;
+    }
+   }
+  }
+
+  .form-options {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: $spacing-xxl;
+
+   .checkbox-wrapper {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+
+    input[type="checkbox"] {
+     margin-right: $spacing-xs;
+     margin-top: 0.2rem;
+     width: 1.6rem;
+     height: 1.6rem;
+     flex-shrink: 0;
     }
 
-    .form-group {
-      margin-bottom: $spacing-xl;
-
-      .form-label {
-        display: block;
-        font-size: $font-size-sm;
-        font-weight: 500;
-        color: darken(#279c79, 30%);  // 짙은 보조 텍스트
-        margin-bottom: $spacing-xs;
-      }
+    .checkbox-label {
+     font-size: $font-size-sm;
+     color: $color-text-secondary;
+     line-height: $line-height-base;
     }
+   }
 
-    .form-options {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: $spacing-xxl;
+   .forgot-password {
+    font-size: $font-size-sm;
+    color: $color-primary;
+    text-decoration: none;
 
-      .checkbox-wrapper input[type="checkbox"] {
-        accent-color: #279c79; // 체크박스도 메인 컬러
-      }
-
-      .checkbox-label {
-        font-size: $font-size-sm;
-        color: darken(#279c79, 25%);
-      }
-
-      .forgot-password {
-        font-size: $font-size-sm;
-        color: #279c79;
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
+    &:hover {
+     text-decoration: underline;
     }
+   }
 
-    /* 🔥 버튼 색상 변경 */
-    .form-button {
-      width: 100%;
-      padding: $spacing-md;
-      background: #279c79;  // 메인 컬러
-      color: white;
-      border: none;
-      border-radius: $border-radius-md;
-      font-size: $font-size-base;
+   &.form-options-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   }
+  }
+
+  .form-button {
+   width: 100%;
+   padding: $spacing-md;
+   background: $gradient-gray-medium;
+   color: white;
+   border: none;
+   border-radius: $border-radius-md;
+   font-size: $font-size-base;
+   font-weight: 600;
+   cursor: pointer;
+   transition: all 0.2s ease;
+   margin-bottom: $spacing-xl;
+
+   &:hover {
+    background: $gradient-gray-dark;
+    transform: translateY(-1px);
+    box-shadow: $shadow-sm;
+   }
+  }
+
+  .divider {
+   text-align: center;
+   margin: $spacing-xl 0;
+   position: relative;
+
+   &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: $color-border;
+   }
+
+   .divider-text {
+    background: $color-bg;
+    padding: 0 $spacing-md;
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+   }
+  }
+
+  .social-login {
+   .social-login-text {
+    text-align: center;
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+    margin-bottom: $spacing-md;
+   }
+
+   .social-buttons {
+    display: flex;
+    gap: $spacing-sm;
+    justify-content: center;
+
+    .btn--social {
+     width: 4.8rem;
+     height: 4.8rem;
+     border-radius: 50%;
+     border: $border;
+     background: $color-bg;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+     transition: all 0.2s ease;
+     padding: 0;
+
+     &:hover {
+      transform: translateY(-1px);
+      box-shadow: $shadow-sm;
+     }
+
+     .social-icon {
+      font-size: 2rem;
       font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      margin-bottom: $spacing-xl;
+     }
 
-      &:hover {
-        background: darken(#279c79, 10%);
-        transform: translateY(-1px);
-        box-shadow: $shadow-sm;
-      }
+     &.facebook .social-icon {
+      color: #1877f2;
+     }
+
+     &.google .social-icon {
+      color: #ea4335;
+     }
+
+     &.apple .social-icon {
+      color: #000;
+     }
     }
-
-    /* Divider 텍스트 색상 */
-    .divider-text {
-      background: $color-bg;
-      padding: 0 $spacing-md;
-      font-size: $font-size-sm;
-      color: darken(#279c79, 35%);
-    }
-
-    /* Social icon 색 유지 (브랜드 색이니까) */
-
-    .security-text {
-      font-size: 1.2rem;
-      color: darken(#279c79, 40%);
-      line-height: $line-height-base;
-      text-align: center;
-      margin: 0;
-    }
+   }
   }
+
+  .security-info {
+   .security-text {
+    font-size: 1.2rem;
+    color: $color-text-muted;
+    line-height: $line-height-base;
+    text-align: center;
+    margin: 0;
+   }
+  }
+ }
 }
