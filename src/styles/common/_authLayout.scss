@@ -4,20 +4,42 @@
    AUTH LAYOUT
 ================================== */
 .auth-layout-page {
-    min-height: 100vh;
-    background: $color-bg;
+  min-height: 100vh;
+  background: $color-bg;
 
-    .auth-layout-container {
-        width: 100%;
-<<<<<<< HEAD
-        margin: 0 auto;
-        padding: 0;
-=======
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
+  .auth-layout-container {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .auth-layout-content {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+
+    @media (max-width: $breakpoint-md) {
+      flex-direction: column;
+
+      .auth-layout-image-section {
+        display: none;
       }
     }
+  }
+
+  .auth-layout-form-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.2rem !important;
+    background: $color-bg;
+  }
+
+  .auth-layout-image-section {
+    flex: 1;
+    background: $gradient-gray-medium;
   }
 }
 
@@ -47,244 +69,173 @@
         color: $color-primary;
         transition: color 0.2s ease;
       }
->>>>>>> 25d63326e1e1330032e1a24e8b61f59ed25a6469
+    }
+  }
+
+  .form-content {
+    /* ERROR */
+    .error-message {
+      background: #fee2e2;
+      color: #dc2626;
+      padding: 0.8rem;
+      border-radius: 8px;
+      border: 1px solid #fecaca;
+      margin-bottom: 1rem;
     }
 
-    .auth-layout-content {
-        display: flex;
+    /* GROUP */
+    .form-group {
+      margin-bottom: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      .form-label {
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: darken(#279c79, 30%);
+      }
+
+      input {
         width: 100%;
-        min-height: 100vh;
+        padding: 1.2rem;
+        border: 1px solid #279c79 !important;
+        border-radius: 8px;
+        font-size: 1.5rem;
+      }
 
-        @media (max-width: $breakpoint-md) {
-            flex-direction: column;
+      .password-input-wrapper {
+        position: relative;
 
-            .auth-layout-image-section {
-                display: none;
-            }
+        .password-toggle {
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          background: none;
+          border: none;
+          cursor: pointer;
+          color: darken(#279c79, 25%);
         }
+      }
     }
 
-    .auth-layout-form-section {
+    /* OPTIONS */
+    .form-options {
+      margin-bottom: 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      input[type="checkbox"] {
+        accent-color: #279c79;
+      }
+
+      .checkbox-label {
+        font-size: 1.4rem;
+        color: darken(#279c79, 25%);
+      }
+
+      .forgot-password {
+        font-size: 1.4rem;
+        color: #279c79;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    /* BUTTONS */
+    .btn {
+      width: 100%;
+      height: 50px !important;
+      border-radius: 8px;
+      font-size: 1.55rem;
+      font-weight: 600;
+      border: 1px solid #279c79;
+      cursor: pointer;
+      margin-bottom: 12px;
+      transition: 0.2s ease;
+
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+
+      line-height: normal !important;
+    }
+
+    .btn--primary {
+      background: #279c79 !important;
+      color: #fff;
+    }
+
+    .btn--accent {
+      background: lighten(#279c79, 32%);
+      color: #279c79;
+    }
+
+    .btn--outline {
+      background: #fff;
+      color: #279c79;
+    }
+
+    /* ⭐ 2분할 버튼 */
+    .signup-dual-buttons {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 1.6rem;
+
+      .btn {
         flex: 1;
+        margin-top: 0 !important;
+        height: 50px !important;
+        line-height: 50px !important;
+      }
+    }
+
+    /* DIVIDER */
+    .divider {
+      margin: 1.6rem 0;
+      text-align: center;
+
+      .divider-text {
+        background: #fff;
+        padding: 0 0.8rem;
+        color: darken(#279c79, 30%);
+      }
+    }
+
+    /* SOCIAL */
+    .social-login {
+      text-align: center;
+
+      .social-login-text {
+        color: darken(#279c79, 30%);
+        margin-bottom: 1rem;
+      }
+
+      .social-buttons {
         display: flex;
-        align-items: center;
         justify-content: center;
-        padding: 2rem 1.2rem !important;
-        background: $color-bg;
+        gap: 1rem;
+
+        .btn--social {
+          width: 44px;
+          height: 44px;
+          background: #fff;
+          border: 1px solid #279c79;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 2rem;
+
+          &:hover {
+            background: rgba(#279c79, 0.08);
+          }
+        }
+      }
     }
-
-    .auth-layout-image-section {
-        flex: 1;
-        background: $gradient-gray-medium;
-    }
-}
-
-/* ================================
-   FORM STYLE
-================================== */
-.common-form {
-    width: 100%;
-    max-width: 420px;
-
-    .form-header {
-        margin-bottom: 1.6rem;
-
-
-        .back-button {
-            background: none;
-            border: none;
-            font-size: 1.3rem;
-            color: $color-text-secondary;
-            cursor: pointer;
-            margin-bottom: 0.8rem;
-            padding: 0;
-
-            &:hover {
-                color: #279c79;
-            }
-        }
-
-        .form-title {
-            font-size: 3.2rem;
-            font-weight: 700;
-            color: #279c79;
-            margin-bottom: 0.4rem;
-        }
-
-        .form-subtitle {
-            font-size: 1.4rem;
-            color: darken(#279c79, 25%);
-        }
-    }
-
-    .form-content {
-
-        /* ERROR */
-        .error-message {
-            background: #fee2e2;
-            color: #dc2626;
-            padding: 0.8rem;
-            border-radius: 8px;
-            border: 1px solid #fecaca;
-            margin-bottom: 1rem;
-        }
-
-        /* GROUP */
-        .form-group {
-            margin-bottom: 1.4rem;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-
-            .form-label {
-                font-size: 1.4rem;
-                font-weight: 500;
-                color: darken(#279c79, 30%);
-            }
-
-            input {
-                width: 100%;
-                padding: 1.2rem;
-                border: 1px solid #279c79 !important;
-                border-radius: 8px;
-                font-size: 1.5rem;
-            }
-
-            .password-input-wrapper {
-                position: relative;
-
-                .password-toggle {
-                    position: absolute;
-                    right: 10px;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    background: none;
-                    border: none;
-                    cursor: pointer;
-                    color: darken(#279c79, 25%);
-                }
-            }
-        }
-
-        /* OPTIONS */
-        .form-options {
-            margin-bottom: 1.4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            input[type="checkbox"] {
-                accent-color: #279c79;
-            }
-
-            .checkbox-label {
-                font-size: 1.4rem;
-                color: darken(#279c79, 25%);
-            }
-
-            .forgot-password {
-                font-size: 1.4rem;
-                color: #279c79;
-
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
-        }
-
-        /* BUTTONS */
-        .btn {
-            width: 100%;
-            height: 50px !important;
-            border-radius: 8px;
-            font-size: 1.55rem;
-            font-weight: 600;
-            border: 1px solid #279c79;
-            cursor: pointer;
-            margin-bottom: 12px;
-            transition: 0.2s ease;
-
-            /* 🔥 정중앙 정렬 핵심 */
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-
-            /* 🔥 추가: line-height 제거 */
-            line-height: normal !important;
-        }
-
-        .btn--primary {
-            background: #279c79 !important;
-            color: #fff;
-        }
-
-        .btn--accent {
-            background: lighten(#279c79, 32%);
-            color: #279c79;
-        }
-
-        .btn--outline {
-
-            background: #fff;
-            color: #279c79;
-        }
-
-        /* ⭐ 2분할 버튼 */
-        .signup-dual-buttons {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 1.6rem;
-
-            .btn {
-                flex: 1;
-                margin-top: 0 !important;
-                height: 50px !important;
-                line-height: 50px !important;
-            }
-        }
-
-        /* DIVIDER */
-        .divider {
-            margin: 1.6rem 0;
-            text-align: center;
-
-            .divider-text {
-                background: #fff;
-                padding: 0 0.8rem;
-                color: darken(#279c79, 30%);
-            }
-        }
-
-        /* SOCIAL */
-        .social-login {
-            text-align: center;
-
-            .social-login-text {
-                color: darken(#279c79, 30%);
-                margin-bottom: 1rem;
-            }
-
-            .social-buttons {
-                display: flex;
-                justify-content: center;
-                gap: 1rem;
-
-                .btn--social {
-                    width: 44px;
-                    height: 44px;
-                    background: #fff;
-                    border: 1px solid #279c79;
-                    border-radius: 50%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-size: 2rem;
-
-                    &:hover {
-                        background: rgba(#279c79, 0.08);
-                    }
-                }
-            }
-        }
-    }
+  }
 }
