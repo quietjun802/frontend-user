@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios"; // 🔥 추가
 
 const SignupForm = () => {
   const [formData, setFormData] = useState({
@@ -12,10 +13,15 @@ const SignupForm = () => {
   });
 
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); // 🔥 추가
+
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
   const navigate = useNavigate();
+
+  const API_BASE_URL =
+    import.meta.env.VITE_API_BASE_URL || "http://localhost:3000"; // 🔥 추가
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -36,10 +42,10 @@ const SignupForm = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // 🔥 필수값 검증
+    // 🔥 필수 검증
     if (
       !formData.nickname ||
       !formData.email ||
@@ -50,22 +56,39 @@ const SignupForm = () => {
       return;
     }
 
-    // 🔥 비밀번호 확인
     if (formData.password !== formData.confirmPassword) {
       setError("비밀번호가 일치하지 않습니다.");
       return;
     }
 
-    // 🔥 약관 동의 확인
     if (!formData.agreeToTerms) {
       setError("회원가입을 위해 약관에 동의해주세요.");
       return;
     }
 
-    console.log("Signup data:", formData);
+    setLoading(true);
+    setError("");
 
-    // 🔥 모든 조건 통과 → 로그인 페이지로 이동
-    navigate("/login");
+    try {
+      // 🔥 백엔드 회원가입 API 호출
+      const response = await axios.post(`${API_BASE_URL}/api/auth/register`, {
+        email: formData.email,
+        password: formData.password,
+        name: formData.nickname,
+        phone_number: formData.phoneNumber || "",
+      });
+
+      if (response.status === 201) {
+        alert("회원가입이 완료되었습니다.");
+        navigate("/login");
+      }
+    } catch (err) {
+      const errorMessage =
+        err.response?.data?.message || "회원가입 중 오류가 발생했습니다.";
+      setError(errorMessage);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -166,14 +189,16 @@ const SignupForm = () => {
             <button
               type="button"
               className="password-toggle"
-              onClick={() => togglePasswordVisibility("confirmPassword")}
+              onClick={() =>
+                togglePasswordVisibility("confirmPassword")
+              }
             >
               {confirmPasswordVisible ? "🙈" : "👁️"}
             </button>
           </div>
         </div>
 
-        {/* ⭐ 약관 동의 */}
+        {/* 약관 동의 */}
         <div className="form-options agree-options">
           <label className="checkbox-wrapper">
             <input
@@ -190,41 +215,13 @@ const SignupForm = () => {
         </div>
 
         {/* 제출 버튼 */}
-        <button type="submit" className="btn btn--primary btn--block">
-          회원 가입
+        <button
+          type="submit"
+          className="btn btn--primary btn--block"
+          disabled={loading}
+        >
+          {loading ? "처리 중..." : "회원 가입"}
         </button>
-
-        <div className="divider">
-          <span className="divider-text">회원가입</span>
-        </div>
-
-        {/* 소셜 회원가입 */}
-        <div className="social-login">
-          <p className="social-signup-text">Or Sign up with</p>
-          <div className="social-buttons">
-            <button
-              type="button"
-              className="btn--social facebook"
-              onClick={() => handleSocialSignup("facebook")}
-            >
-              <span className="social-icon">f</span>
-            </button>
-            <button
-              type="button"
-              className="btn--social google"
-              onClick={() => handleSocialSignup("google")}
-            >
-              <span className="social-icon">G</span>
-            </button>
-            <button
-              type="button"
-              className="btn--social apple"
-              onClick={() => handleSocialSignup("apple")}
-            >
-              <span className="social-icon">🍎</span>
-            </button>
-          </div>
-        </div>
       </form>
     </div>
   );

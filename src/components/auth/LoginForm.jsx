@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios"; // 🔹 추가
 import { AuthContext } from "../../context/AuthContext";
-import { authenticateUser } from "../../api/mockUser";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
@@ -11,8 +11,13 @@ const LoginForm = () => {
   });
 
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); // 🔹 추가
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  // 환경변수에서 API 주소 불러오기 (없으면 localhost:3000)
+  const API_BASE_URL =
+    import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -23,17 +28,51 @@ const LoginForm = () => {
     setError("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const result = authenticateUser(formData.email, formData.password);
+    setLoading(true);
+    setError("");
 
-    if (result.success) {
-      login(result.user);
-      localStorage.setItem("accessToken", result.token);
-      navigate("/mypage");
-    } else {
-      setError(result.message);
+    try {
+      // 🔥 백엔드 로그인 API 호출
+      const response = await axios.post(
+        `${API_BASE_URL}/api/auth/login`,
+        {
+          email: formData.email,
+          password: formData.password,
+        },
+        {
+          withCredentials: true, // 쿠키 기반이면 유지, 아니면 빼도 됨
+        }
+      );
+
+      if (response.status === 200) {
+        const { user, token } = response.data;
+
+        // 🔥 컨텍스트에 유저 저장
+        login(user);
+
+        // 🔥 토큰 저장 (백엔드에서 token 내려주면)
+        if (token) {
+          localStorage.setItem("accessToken", token);
+        }
+
+        // Remember me 체크 시 플래그 저장
+        if (formData.rememberMe) {
+          localStorage.setItem("rememberMe", "true");
+        } else {
+          localStorage.removeItem("rememberMe");
+        }
+
+        navigate("/mypage");
+      }
+    } catch (err) {
+      const errorMessage =
+        err.response?.data?.message || "로그인 중 오류가 발생했습니다.";
+      setError(errorMessage);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -44,8 +83,7 @@ const LoginForm = () => {
   return (
     <div className="common-form">
       <div className="form-header">
-
-        {/* ⭐ 홈페이지로 돌아가기 버튼 추가 */}
+        {/* ⭐ 홈페이지로 돌아가기 버튼 */}
         <button
           type="button"
           className="back-button"
@@ -88,7 +126,9 @@ const LoginForm = () => {
               onChange={handleInputChange}
               required
             />
-            <button type="button" className="password-toggle">👁️</button>
+            <button type="button" className="password-toggle">
+              👁️
+            </button>
           </div>
         </div>
 
@@ -103,12 +143,18 @@ const LoginForm = () => {
             />
             <span className="checkbox-label">비밀번호 기억하기</span>
           </label>
-          <a href="#" className="forgot-password">Forgot Password?</a>
+          <a href="#" className="forgot-password">
+            Forgot Password?
+          </a>
         </div>
 
         {/* Login Button */}
-        <button type="submit" className="btn btn--primary btn--block">
-          Login
+        <button
+          type="submit"
+          className="btn btn--primary btn--block"
+          disabled={loading}
+        >
+          {loading ? "로그인 중..." : "Login"}
         </button>
 
         {/* Divider */}
@@ -139,13 +185,25 @@ const LoginForm = () => {
         <div className="social-login">
           <p className="social-login-text">Or login with</p>
           <div className="social-buttons">
-            <button type="button" className="btn--social facebook">
+            <button
+              type="button"
+              className="btn--social facebook"
+              onClick={() => handleSocialLogin("facebook")}
+            >
               <span className="social-icon">f</span>
             </button>
-            <button type="button" className="btn--social google">
+            <button
+              type="button"
+              className="btn--social google"
+              onClick={() => handleSocialLogin("google")}
+            >
               <span className="social-icon">G</span>
             </button>
-            <button type="button" className="btn--social apple">
+            <button
+              type="button"
+              className="btn--social apple"
+              onClick={() => handleSocialLogin("apple")}
+            >
               <span className="social-icon">🍎</span>
             </button>
           </div>
