@@ -1,12 +1,17 @@
 import React from "react";
-import Newsletter from "./Newsletter";
+import Newsletter from "./Newsletter";  // 다시 포함한다!
 import { socialLinks, footerNavData } from "../../api/mockFooter";
 import "../../styles/components/common/Footer.scss";
 
 const Footer = () => {
     return (
         <footer className="footer">
-            <Newsletter />
+
+            {/* 🔥 Newsletter는 Footer 안에서 absolute로 띄울 예정 */}
+            <div className="newsletter-wrapper">
+                <Newsletter />
+            </div>
+
             <div className="footer-links">
                 <div className="inner">
                     <div className="social-links">
@@ -73,6 +78,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
+
         </footer>
     );
 };

@@ -1,0 +1,77 @@
+/* ============================================
+   호텔 리스트 상단 헤더 영역
+============================================ */
+.hotel-results-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 0 0 18px 0;
+  padding: 6px 4px;
+
+  color: #333;
+  font-size: 15px;
+}
+
+/* 왼쪽 Showing 텍스트 */
+.results-info {
+  font-size: 15px;
+  color: #333;
+
+  strong {
+    font-weight: 700;
+  }
+
+  .total {
+    color: #24a889;
+  }
+}
+
+/* ============================================
+   오른쪽 Sort 영역
+============================================ */
+.sort-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  label {
+    font-size: 14px;
+    color: #666;
+  }
+
+  select {
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+
+    border: 1px solid #d8d8d8;
+    background: #fff;
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: #24a889;
+    }
+
+    &:focus {
+      border-color: #24a889;
+      box-shadow: 0 0 0 3px rgba(36, 168, 137, 0.2);
+      outline: none;
+    }
+  }
+}
+
+/* ============================================
+   반응형
+============================================ */
+@media (max-width: 768px) {
+  .hotel-results-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+}

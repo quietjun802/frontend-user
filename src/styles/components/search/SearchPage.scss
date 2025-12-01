@@ -1,0 +1,52 @@
+/* ===========================================
+   Search Page 기본 레이아웃
+=========================================== */
+.search-page {
+  width: 100%;
+  padding: 20px 0 60px 0;
+  background: #f9fafb;
+}
+
+/* 로딩, 에러 */
+.search-page.loading,
+.search-page.error {
+  text-align: center;
+  padding: 60px 0;
+  font-size: 18px;
+  color: #666;
+}
+
+
+/* ===========================================
+   컨텐츠 래퍼 (필터 제거 버전)
+=========================================== */
+.search-content.full-width {
+  max-width: 1400px;        /* 🔥 전체 리스트 중앙 정렬 */
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+
+/* ===========================================
+   호텔 리스트 전체 영역
+=========================================== */
+.hotel-results {
+  width: 100%;
+  background: transparent;
+}
+
+
+/* ===========================================
+   반응형
+=========================================== */
+@media (max-width: 1024px) {
+  .search-content.full-width {
+    max-width: 100%;
+    padding: 0 16px;
+  }
+}

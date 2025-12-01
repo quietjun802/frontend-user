@@ -1,0 +1,234 @@
+/* ============================================
+   리스트 전체
+============================================ */
+.hotel-list-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.hotel-list-cards.empty {
+  padding: 40px;
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+}
+
+/* ============================================
+   호텔 카드
+============================================ */
+.hotel-card {
+  display: flex;
+  gap: 22px;
+  padding: 20px;
+
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+
+  cursor: pointer;
+  transition: 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  }
+}
+
+/* ============================================
+   왼쪽 이미지
+============================================ */
+.hotel-image {
+  width: 260px;
+  height: 180px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .image-count {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 4px 10px;
+    background: rgba(0, 0, 0, 0.55);
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 6px;
+  }
+}
+
+/* ============================================
+   오른쪽 전체 영역 (정보 + 아래 버튼)
+============================================ */
+.hotel-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ============================================
+   상단: 정보
+============================================ */
+.hotel-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hotel-name {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  color: #222;
+}
+
+.hotel-location {
+  font-size: 14px;
+  color: #555;
+}
+
+.hotel-meta {
+  display: flex;
+  gap: 14px;
+  font-size: 14px;
+
+  .hotel-stars {
+    color: #e56363;
+  }
+}
+
+.hotel-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .rating-score {
+    background: #1aaa8f;
+    color: #fff;
+    font-size: 14px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+  }
+
+  .rating-label {
+    font-weight: 600;
+    color: #333;
+  }
+
+  .rating-reviews {
+    font-size: 13px;
+    color: #666;
+  }
+}
+
+/* ============================================
+   하단: 가격 + 버튼 두 개
+============================================ */
+.hotel-bottom {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e8e8e8;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 가격 */
+.hotel-price {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+
+  .price-label {
+    font-size: 12px;
+    color: #666;
+  }
+
+  .price-amount {
+    font-size: 22px;
+    font-weight: 700;
+    color: #d9534f;
+  }
+
+  .price-note {
+    font-size: 11px;
+    color: #888;
+  }
+}
+
+/* 버튼 영역 */
+.hotel-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wishlist-button {
+  font-size: 22px;
+  border: 1px solid #ddd;
+  background: #fff;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background: #ffe4e4;
+  }
+}
+
+.view-button {
+  background: #1aaa8f;
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    background: #178a72;
+  }
+}
+
+/* ============================================
+   반응형
+============================================ */
+@media (max-width: 900px) {
+  .hotel-card {
+    flex-direction: column;
+  }
+
+  .hotel-image {
+    width: 100%;
+    height: 200px;
+  }
+
+  .hotel-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .hotel-price {
+    text-align: left;
+  }
+
+  .view-button {
+    width: 100%;
+    text-align: center;
+  }
+}

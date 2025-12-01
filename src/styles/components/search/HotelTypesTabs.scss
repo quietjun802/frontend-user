@@ -1,0 +1,87 @@
+/* ============================================
+   호텔 타입 탭 컨테이너
+============================================ */
+.hotel-types-tabs {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  background: #ffffff;
+  padding: 12px 18px;
+  border-radius: 12px;
+
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  margin-bottom: 20px;
+}
+
+/* ============================================
+   탭 기본 스타일
+============================================ */
+.tab-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  padding: 10px 18px;
+  border-radius: 10px;
+
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  text-align: left;
+
+  transition: all 0.25s ease;
+}
+
+/* 탭 텍스트 */
+.tab-label {
+  font-size: 15px;
+  font-weight: 700;
+  color: #333;
+}
+
+.tab-count {
+  font-size: 12px;
+  color: #999;
+}
+
+/* ============================================
+   Active 상태
+============================================ */
+.tab-item.active {
+  background: #e9f8f3;
+  border-radius: 10px;
+}
+
+.tab-item.active .tab-label {
+  color: #24a889;
+}
+
+.tab-item.active .tab-count {
+  color: #24a889;
+}
+
+/* Hover 효과 */
+.tab-item:hover {
+  background: #f2f6f5;
+}
+
+/* ============================================
+   반응형
+============================================ */
+@media (max-width: 768px) {
+  .hotel-types-tabs {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .tab-item {
+    padding: 8px 12px;
+  }
+
+  .tab-label {
+    font-size: 14px;
+  }
+}
