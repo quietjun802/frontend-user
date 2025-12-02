@@ -21,14 +21,19 @@
    컨텐츠 래퍼 (필터 제거 버전)
 =========================================== */
 .search-content.full-width {
-  max-width: 1400px;        /* 🔥 전체 리스트 중앙 정렬 */
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 24px;
+
+  /* 🔥 카드 패딩(20px)과 동일하게 정렬 */
+  padding: 0 20px;
+
   width: 100%;
 
   display: flex;
   flex-direction: column;
-  gap: 24px;
+
+  /* 🔥 탭과 리스트 사이 여유 공간 */
+  gap: 32px;
 }
 
 
@@ -47,6 +52,6 @@
 @media (max-width: 1024px) {
   .search-content.full-width {
     max-width: 100%;
-    padding: 0 16px;
+    padding: 0 16px; /* 모바일에서 더 좁게 */
   }
 }

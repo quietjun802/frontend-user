@@ -3,7 +3,6 @@ import HotelTypesTabs from "../../components/search/HotelTypesTabs";
 import HotelResultsHeader from "../../components/search/HotelResultsHeader";
 import HotelListCards from "../../components/search/HotelListCards";
 import "../../styles/components/search/SearchPage.scss";
-// mock 데이터 사용
 import { mockHotels } from "../../api/mockHotels"; 
 
 const SearchPage = () => {
@@ -20,14 +19,15 @@ const SearchPage = () => {
   }
 
   return (
-    <div className="search-page">
+  <div className="search-page">
 
-      {/* 호텔 타입 탭 */}
-      <HotelTypesTabs />
+      {/* 🔥 검색폼(form-container) 밖에서 가장 먼저 배치 */}
+      <div className="tabs-wrapper">
+        <HotelTypesTabs />
+      </div>
 
-      {/* 필터 제거 → hotel-results만 표시 */}
+      {/* 호텔 리스트 섹션 */}
       <div className="search-content full-width">
-
         <div className="hotel-results">
           <HotelResultsHeader
             total={hotels.length}
@@ -35,10 +35,11 @@ const SearchPage = () => {
           />
           <HotelListCards hotels={hotels} />
         </div>
-
       </div>
-    </div>
-  );
+
+  </div>
+);
+
 };
 
 export default SearchPage;

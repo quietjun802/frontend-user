@@ -22,40 +22,39 @@ const HotelListCards = ({ hotels = [] }) => {
             className="hotel-card"
             onClick={() => navigate(`/hotels/${hotel.id}`)}
           >
-            {/* ========= 이미지 영역 ========= */}
+            {/* ========== LEFT IMAGE (꽉 채우기) ========== */}
             <div className="hotel-image">
               <img src={hotel.image} alt={hotel.name} />
               <div className="image-count">{hotel.imageCount} images</div>
             </div>
 
-            {/* ========= 오른쪽 전체 콘텐츠 ========= */}
+            {/* ========== RIGHT CONTENT ========== */}
             <div className="hotel-content">
 
-              {/* ====== 상단 정보 영역 ====== */}
-              <div className="hotel-info">
-                <h3 className="hotel-name">{hotel.name}</h3>
-                <div className="hotel-location">{hotel.location}</div>
+              {/* -------- TOP TEXT + PRICE -------- */}
+              <div className="hotel-header">
+                <div className="hotel-info">
+                  <h3 className="hotel-name">{hotel.name}</h3>
+                  <div className="hotel-location">{hotel.location}</div>
 
-                <div className="hotel-meta">
-                  <div className="hotel-stars">
-                    {"⭐".repeat(hotel.stars)} {hotel.stars} Star Hotel
+                  <div className="hotel-meta">
+                    <span className="hotel-stars">
+                      {"⭐".repeat(hotel.stars)} {hotel.stars} Star Hotel
+                    </span>
+                    <span className="hotel-amenities">
+                      🏨 {hotel.amenities}+ Amenities
+                    </span>
                   </div>
-                  <div className="hotel-amenities">
-                    🏨 {hotel.amenities}+ Amenities
+
+                  <div className="hotel-rating">
+                    <span className="rating-score">{hotel.rating}</span>
+                    <span className="rating-label">{hotel.ratingLabel}</span>
+                    <span className="rating-reviews">
+                      {hotel.reviews} reviews
+                    </span>
                   </div>
                 </div>
 
-                <div className="hotel-rating">
-                  <span className="rating-score">{hotel.rating}</span>
-                  <span className="rating-label">{hotel.ratingLabel}</span>
-                  <span className="rating-reviews">
-                    {hotel.reviews} reviews
-                  </span>
-                </div>
-              </div>
-
-              {/* ====== 하단 버튼/가격 ====== */}
-              <div className="hotel-bottom">
                 <div className="hotel-price">
                   <div className="price-label">starting from</div>
                   <div className="price-amount">
@@ -63,11 +62,26 @@ const HotelListCards = ({ hotels = [] }) => {
                   </div>
                   <div className="price-note">excl. tax</div>
                 </div>
+              </div>
 
-                <div className="hotel-buttons">
-                  <button className="wishlist-button">❤️</button>
-                  <button className="view-button">View Place</button>
-                </div>
+              {/* -------- BOTTOM BUTTONS -------- */}
+              <div className="hotel-footer">
+                <button
+                  className="wishlist-button"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  ❤️
+                </button>
+
+                <button
+                  className="view-button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate(`/hotels/${hotel.id}`);
+                  }}
+                >
+                  View Place
+                </button>
               </div>
 
             </div>

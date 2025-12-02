@@ -35,34 +35,41 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  white-space: nowrap; /* 🔥 줄바꿈 절대 금지 */
+}
 
-  label {
-    font-size: 14px;
-    color: #666;
-  }
+.sort-dropdown label {
+  font-size: 14px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 
-  select {
-    padding: 6px 10px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
+  /* 🔥 "Sort by"가 줄바꿈되지 않게 */
+  white-space: nowrap;
+}
 
-    border: 1px solid #d8d8d8;
-    background: #fff;
-    cursor: pointer;
+.sort-dropdown select {
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
 
-    transition: all 0.2s ease;
+  border: 1px solid #d8d8d8;
+  background: #fff;
+  cursor: pointer;
 
-    &:hover {
-      border-color: #24a889;
-    }
+  transition: all 0.2s ease;
+}
 
-    &:focus {
-      border-color: #24a889;
-      box-shadow: 0 0 0 3px rgba(36, 168, 137, 0.2);
-      outline: none;
-    }
-  }
+.sort-dropdown select:hover {
+  border-color: #24a889;
+}
+
+.sort-dropdown select:focus {
+  border-color: #24a889;
+  box-shadow: 0 0 0 3px rgba(36, 168, 137, 0.2);
+  outline: none;
 }
 
 /* ============================================
