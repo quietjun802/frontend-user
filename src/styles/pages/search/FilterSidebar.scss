@@ -8,7 +8,11 @@
   .filter-title {
     font-size: 1.8rem;
     font-weight: 700;
+<<<<<<< HEAD
     color: #1a2a2a; // 진한 딥그린 느낌
+=======
+    color: #1a2a2a;
+>>>>>>> main
     margin-bottom: 4px;
   }
 
@@ -48,7 +52,10 @@
         color: #1a2a2a;
       }
 
+<<<<<<< HEAD
       /* 펼침/접힘 애니메이션 구현하려면 여기서 rotate 조절 */
+=======
+>>>>>>> main
       &.collapsed .toggle-btn {
         transform: rotate(0deg);
       }
@@ -63,6 +70,7 @@
   }
 
   /* ======================
+<<<<<<< HEAD
      PRICE SLIDER
   ====================== */
   .price-slider {
@@ -107,6 +115,78 @@
   font-size: 1.4rem;
   color: #1a2a2a;
 }
+=======
+     PRICE SLIDER — 최종 해결본
+  ====================== */
+  .price-slider {
+    position: relative;
+    width: 100%;
+    padding: 28px 0 16px;
+  }
+
+  /* 트랙 */
+  .price-slider-track {
+    position: absolute;
+    top: 65%;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #cce7df;
+    border-radius: 5px;
+    transform: translateY(-50%);
+    z-index: 0; /* 트랙이 가장 아래로 */
+  }
+
+  /* 공통 range */
+  .price-slider input[type="range"] {
+    -webkit-appearance: none;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    pointer-events: none; /* 기본 비활성화 */
+    z-index: 3; /* 트랙 위에 위치 */
+  }
+
+  /* 트랙은 투명 */
+  .price-slider input[type="range"]::-webkit-slider-runnable-track {
+    height: 4px;
+    background: transparent;
+  }
+
+  /* thumb */
+  .price-slider input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    background: #24a889;
+    border-radius: 50%;
+    pointer-events: auto; /* thumb만 클릭 가능 */
+    cursor: pointer;
+    position: relative;
+    z-index: 10; /* 공이 가장 위로 */
+  }
+
+  /* min-range가 무조건 가장 위 */
+  .price-slider .min-range {
+    z-index: 12;
+    pointer-events: auto;
+  }
+
+  .price-slider .max-range {
+    z-index: 11;
+  }
+
+  .price-values {
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.4rem;
+    color: #1a2a2a;
+  }
+>>>>>>> main
 
   /* ======================
      RATING BUTTONS
@@ -127,13 +207,21 @@
 
       &:hover {
         background: #24a889;
+<<<<<<< HEAD
         color: white;
+=======
+        color: #fff;
+>>>>>>> main
       }
     }
   }
 
   /* ======================
+<<<<<<< HEAD
      CHECKBOX LIST
+=======
+     체크박스
+>>>>>>> main
   ====================== */
   .checkbox-list {
     display: flex;
@@ -151,7 +239,11 @@
       input[type="checkbox"] {
         width: 18px;
         height: 18px;
+<<<<<<< HEAD
         accent-color: #24a889; // 민트 체크 활성화
+=======
+        accent-color: #24a889;
+>>>>>>> main
         cursor: pointer;
       }
     }

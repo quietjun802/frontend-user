@@ -1,0 +1,6 @@
+@use "../../common/variables";
+@use "../../common/mixins";
+
+.hotel-map {
+  padding: variables.$spacing-section 0 0;
+}
