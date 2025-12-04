@@ -1,27 +1,28 @@
-import { mockReviews } from "./mockReviews";
+import axiosInstance from "./axiosConfig";
 
-let reviews = [...mockReviews];
+// 예시: 작성 후 24시간 이내만 수정/삭제 가능
+const canEditOrDelete = (review) => {
+  const hoursSinceCreated = (Date.now() - new Date(review.createdAt)) / (1000 * 60 * 60);
+  return hoursSinceCreated < 24;
+};
 
-export async function getReviews(hotelId) {
-  return reviews;
+export const getReviews = async (hotelId) => {
+  const response = await axiosInstance.get(`/hotels/${hotelId}/reviews`);
+  return response.data.data;
 }
 
-export async function createReview(hotelId, review) {
-  const newReview = {
-    id: Date.now(),
-    ...review,
-    date: new Date().toISOString().slice(0, 10),
-  };
-  reviews.push(newReview);
-  return newReview;
-}
 
-export async function updateReview(id, updated) {
-  reviews = reviews.map((r) => (r.id === id ? { ...r, ...updated } : r));
-  return reviews.find((r) => r.id === id);
+export const createReview = async (reviewData) => {
+  const response = await axiosInstance.post(`/reviews`, reviewData);
+  return response.data.data;
 }
-
-export async function deleteReview(id) {
-  reviews = reviews.filter((r) => r.id !== id);
-  return true;
+export const updateReview = async (reviewId, reviewData) => {
+  const response = await axiosInstance.put(`/reviews/${reviewId}`, reviewData);
+  canEditOrDelete(response.data.data);
+  return response.data.data;
+} 
+export const deleteReview = async (reviewId) => {
+  const response = await axiosInstance.delete(`/reviews/${reviewId}`);
+  canEditOrDelete(response.data.data);
+  return response.data.data;
 }

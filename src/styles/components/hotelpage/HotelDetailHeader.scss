@@ -1,148 +1,261 @@
-/* 전체 컨테이너 */
+@use "../../common/variables" as *;
+@use "../../common/mixins";
+
 .hotel-detail-header {
-  width: 100%;
-  max-width: 1380px;
-  margin: 0 auto;
-  padding: 20px 0 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
+  margin-top: $header-height;
 
-/* Breadcrumb */
-.breadcrumb {
-  font-size: 14px;
-  color: #999;
-  display: flex;
-  gap: 6px;
-}
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $gutter-lg;
 
-/* 메인 영역: 왼쪽 정보 + 오른쪽 가격/버튼 */
-.info-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;
-}
+    .breadcrumb {
+    
+      span {
+        &:last-child {
+          color: $color-text;
+          font-weight: 600;
+        }
+      }
+    }
 
-/* 왼쪽 텍스트 영역 */
-.info-left {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex: 1;
-}
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
 
-.hotel-name {
-  font-size: 28px;
-  font-weight: 700;
-  color: #222;
-}
+      .icon-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+        color: $color-secondary;
+        transition: color 0.3s;
 
-/* 별점 */
-.rating-section {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+        &:hover {
+          color: $color-primary;
+        }
+      }
 
-.stars svg {
-  color: #ffd43b;
-}
-
-.star-empty {
-  color: #ddd !important;
-}
-
-/* 주소 */
-.location-section {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: #666;
-}
-
-/* 리뷰 */
-.review-section {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.review-score {
-  background: #24a889;
-  color: white;
-  padding: 4px 10px;
-  font-weight: 700;
-  border-radius: 6px;
-}
-
-/* 오른쪽 영역 */
-.info-right {
-  min-width: 260px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 12px;
-}
-
-.price-wrapper {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-}
-
-.price {
-  font-size: 24px;
-  font-weight: 700;
-}
-
-.price-unit {
-  font-size: 14px;
-  color: #888;
-}
-
-/* 액션 아이콘 */
-.top-actions {
-  display: flex;
-  gap: 10px;
-}
-
-.icon-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  background: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-.btn-book-now {
-  padding: 10px 20px;
-  background: #24a889;
-  border-radius: 8px;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-  transition: 0.15s;
-}
-
-.btn-book-now:hover {
-  background: #1d8a74;
-}
-
-/* 모바일 */
-@media (max-width: 768px) {
-  .info-row {
-    flex-direction: column;
-    gap: 16px;
+      .user-name {
+        font-size: 14px;
+        color: #333;
+      }
+    }
   }
 
-  .info-right {
+  .hotel-info {
+    display: flex;
+    justify-content: space-between;
     align-items: flex-start;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+
+    .hotel-title-section {
+      flex: 1;
+
+      .hotel-name {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      .rating-section {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+
+        .stars {
+          display: flex;
+          gap: 2px;
+
+          .star-filled {
+            color: #ffd700;
+            font-size: 16px;
+          }
+
+          .star-empty {
+            color: #ddd;
+            font-size: 16px;
+          }
+        }
+
+        .rating-text {
+          font-size: 14px;
+          color: #666;
+        }
+      }
+
+      .location-section {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 10px;
+
+        .location-icon {
+          color: #ff385c;
+          font-size: 16px;
+        }
+
+        .address {
+          font-size: 14px;
+          color: #666;
+        }
+      }
+
+      .review-section {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .review-score {
+          background: #00a699;
+          color: white;
+          padding: 4px 8px;
+          border-radius: 4px;
+          font-weight: 600;
+          font-size: 14px;
+        }
+
+        .review-text {
+          font-size: 14px;
+          font-weight: 600;
+          color: #333;
+        }
+
+        .review-count {
+          font-size: 14px;
+          color: #666;
+        }
+      }
+    }
+
+    .price-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 15px;
+
+      .price-wrapper {
+        text-align: right;
+
+        .price {
+          font-size: 32px;
+          font-weight: 700;
+          color: #ff385c;
+        }
+
+        .price-unit {
+          font-size: 16px;
+          color: #666;
+        }
+      }
+
+      .btn-book-now {
+        background: #00a699;
+        color: white;
+        border: none;
+        padding: 12px 40px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+
+        &:hover {
+          background: #008c80;
+        }
+      }
+    }
+  }
+
+  .hotel-images {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 10px;
+    border-radius: 12px;
+    overflow: hidden;
+
+    .main-image {
+      grid-row: 1 / 3;
+      height: 500px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .sub-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+
+      .sub-image {
+        position: relative;
+        height: 245px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .view-all-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.5);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+
+          span {
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hotel-info {
+      flex-direction: column;
+      gap: 20px;
+
+      .price-section {
+        align-items: flex-start;
+        width: 100%;
+
+        .btn-book-now {
+          width: 100%;
+        }
+      }
+    }
+
+    .hotel-images {
+      grid-template-columns: 1fr;
+
+      .main-image {
+        grid-row: auto;
+        height: 300px;
+      }
+
+      .sub-images {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
   }
 }

@@ -1,75 +1,59 @@
-/* ============================================
-   Amenities Wrapper
-============================================ */
 .amenities {
-  width: 100%;
-  padding: 20px 0 32px 0;
-  border-bottom: 1px solid #e5e5e5; /* 캡처본 구분선 */
-}
+ padding: 40px 0;
+ border-bottom: 1px solid #e0e0e0;
 
-/* 제목 */
-.amenities-title {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 16px;
-  color: #222;
-}
+ .amenities-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #333;
+ }
 
-/* ============================================
-   Grid Layout (2 columns × 여러줄)
-============================================ */
-.amenities-grid {
+ .amenities-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 좌우 2개씩 */
-  gap: 12px 60px; /* 세로 12px, 가로 여백 60px */
-  margin-bottom: 8px;
-}
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+ }
 
-/* amenity item 정렬 */
-.amenity-item {
+ .amenity-item {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 14px;
-  color: #222;
-}
-
-/* 아이콘 */
-.amenity-icon {
-  font-size: 18px;
-  width: 22px;
-  text-align: center;
-}
-
-/* 텍스트 */
-.amenity-name {
-  font-size: 14px;
-  color: #333;
-}
-
-/* ============================================
-   Show more 버튼
-============================================ */
-.show-more-btn {
-  background: none;
-  border: none;
-  color: #e66a6a; /* 캡처처럼 빨간 계열 */
-  font-size: 14px;
-  cursor: pointer;
-  padding-left: 4px;
-  margin-top: 6px;
+  padding: 12px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  transition: background 0.2s;
 
   &:hover {
-    text-decoration: underline;
+   background: #f0f0f0;
   }
-}
 
-/* ============================================
-   Responsive
-============================================ */
-@media (max-width: 768px) {
-  .amenities-grid {
-    grid-template-columns: 1fr; /* 모바일에서는 1열 */
-    gap: 10px 20px;
+  .amenity-icon {
+   font-size: 20px;
+   width: 24px;
+   text-align: center;
   }
+
+  .amenity-name {
+   font-size: 14px;
+   color: #333;
+  }
+ }
+
+ .show-more-btn {
+  background: none;
+  border: 1px solid #333;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+   background: #333;
+   color: white;
+  }
+ }
 }

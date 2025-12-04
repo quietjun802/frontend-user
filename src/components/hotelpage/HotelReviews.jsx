@@ -5,7 +5,7 @@ import {
  getRatingLabel,
  getRatingDistribution,
  calculateAverageRating,
-} from "../../util/reviewHelper.js";
+} from "../../util/reviewHelper";
 
 const HotelReviews = ({
  hotelId,

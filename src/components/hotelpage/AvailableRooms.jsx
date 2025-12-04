@@ -1,6 +1,7 @@
 import React from "react";
 import "../../styles/components/hotelpage/AvailableRooms.scss";
 
+
 const AvailableRooms = ({ rooms }) => {
  return (
   <div className="available-rooms">

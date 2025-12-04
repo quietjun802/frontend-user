@@ -1,162 +1,22 @@
-/* ============================================
-   Reviews Section
-============================================ */
-.hotel-reviews {
-  width: 100%;
-  padding: 40px 0;
-  border-top: 1px solid #e5e5e5;
-}
+@use "../../common/variables" as *;
+@use "../../common/mixins";
 
-/* 상단 제목 + 버튼 */
-.dep {
+.hotel-reviews {
+ // 호텔 리뷰 스타일
+ padding: $spacing-section 0;
+ .dep {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-
-  h3 {
-    font-size: 20px;
-    font-weight: 700;
-    color: #222;
-  }
-
-  .btn--primary {
-    background: #24a889;
-    padding: 8px 16px;
-    border-radius: 6px;
-    color: white;
-    font-size: 13.5px;
-    border: none;
-    cursor: pointer;
-    transition: 0.2s;
-
-    &:hover {
-      background: #1f8f74;
-    }
-  }
-}
-
-/* ============================================
-   평균 평점 박스
-============================================ */
-.average-rating {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 24px;
-
-  span {
-    font-size: 16px;
-    color: #333;
-  }
-
-  span:nth-child(2) {
-    /* 숫자 평점 */
-    font-size: 26px;
-    font-weight: 700;
-    color: #222;
-    margin-left: 6px;
-  }
-
-  span:nth-child(3) {
-    /* Very Good, Excellent 등 */
-    font-size: 16px;
-    color: #24a889;
-    font-weight: 600;
-  }
-
-  svg {
-    color: #24a889;
-    font-size: 20px;
-  }
-}
-
-/* ============================================
-   리뷰 리스트
-============================================ */
-.review-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-
+ }
+ .review-list {
   li {
-    padding: 20px 0;
-    border-bottom: 1px solid #f0f0f0;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-
-    &:last-child {
-      border-bottom: none;
-    }
+   display: flex;
+   box-shadow: $shadow-sm;
+   padding: $spacing-lg;
+   margin-bottom: $spacing-md;
+   border-radius: $border-radius-sm;
+   gap: $spacing-md;
   }
-}
-
-/* 프로필 이미지 */
-.profile-image {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-bottom: 4px;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-}
-
-/* 작성자 이름 */
-.review-author {
-  font-size: 15px;
-  font-weight: 600;
-  color: #222;
-}
-
-/* 별점 */
-.review-rating {
-  display: flex;
-  gap: 2px;
-
-  svg {
-    color: #24a889;
-  }
-}
-
-/* 날짜 */
-.review-date {
-  font-size: 12px;
-  color: #888;
-}
-
-/* 리뷰 본문 */
-.review-list li {
-  font-size: 14px;
-  color: #333;
-  line-height: 1.45;
-  white-space: pre-line;
-}
-
-/* ============================================
-   Responsive
-============================================ */
-@media (max-width: 768px) {
-  .average-rating {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-
-    span:nth-child(2) {
-      font-size: 22px;
-    }
-  }
-}
-/* ============================================
-   Reviews Section
-============================================ */
-.hotel-reviews {
-  width: 100%;
-  padding: 40px 0 300px; /* 🔥 아래 여백 +80px 추가 */
-  border-top: 1px solid #e5e5e5;
+//   margin-top: $spacing-lg;
+ }
 }
