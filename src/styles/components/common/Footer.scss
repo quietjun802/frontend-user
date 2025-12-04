@@ -3,24 +3,38 @@
     width: 100%;
     padding: 220px 0 0 0;   /* newsletter 높이만큼 footer 위쪽 확보 */
     border-radius: 30px 30px 0 0;
-    position: relative;      /* newsletter absolute 기준점 */
+    position: relative;
     overflow: visible;
 }
 
 /* =========================================================
-   ========== Newsletter (떠 있는 카드 디자인) ==========
+   ========== Newsletter (떠 있는 카드 디자인)
    ========================================================= */
 
 .newsletter-wrapper {
     position: absolute;
-    top: -95px;     /* ↓ 기존 -160px → -120px로 낮춰서 더 아래로 */
+    top: -95px;
     left: 0;
     width: 100%;
 
     display: flex;
     justify-content: center;
 
-    z-index: 5;      /* ↓ header보다 낮게! header가 10~100대라면 OK */
+    z-index: 5; 
+}
+
+/* =========================================================
+   ========== MyPage에서는 겹치지 않게 배너 내리기
+   ========================================================= */
+
+.mypage-layout .footer {
+    padding-top: 80px;
+}
+
+.mypage-layout .footer .newsletter-wrapper {
+    position: static;
+    top: auto;
+    margin-top: 24px;
 }
 
 .newsletter {
@@ -38,7 +52,7 @@
     box-shadow: 0 18px 28px rgba(0, 0, 0, 0.18);
 }
 
-/* 텍스트 */
+/* ======================= 텍스트 ======================= */
 
 .newsletter-left {
     width: 50%;
@@ -69,7 +83,8 @@
     }
 }
 
-/* 입력 영역 */
+/* ======================= 입력 영역 ======================= */
+
 .newsletter-input-wrapper {
     display: flex;
     margin-top: 8px;
@@ -110,11 +125,11 @@
 }
 
 /* =========================================================
-   ========== Footer Links ==========
+   ========== Footer Links
    ========================================================= */
 
 .footer-links {
-    margin-top: 0; /* 더 이상 음수 margin 필요 없음 */
+    margin-top: 0;
 
     .inner {
         width: 90%;
@@ -169,7 +184,7 @@
 }
 
 /* =========================================================
-   ========== Footer Bottom ==========
+   ========== Footer Bottom
    ========================================================= */
 
 .footer-bottom {
@@ -194,18 +209,18 @@
 
 .social-links {
     .logo {
-        font-size: 26px;      /* 기존보다 2~4px 증가 */
+        font-size: 26px;
         font-weight: 800;
         color: #ffffff;
         margin-bottom: 8px;
     }
 
     .description {
-        font-size: 15px;      /* 기존 footer 항목보다 조금 더 큼 */
+        font-size: 15px;
         font-weight: 500;
-        color: #e8f7ef;        /* 연한 민트/화이트 느낌 */
+        color: #e8f7ef;
         line-height: 1.5;
-        max-width: 350px;      /* 길게 퍼지지 않고 딱 보기 좋게 */
+        max-width: 350px;
     }
 }
 
@@ -213,12 +228,12 @@
     .follow-icons {
         display: flex;
         align-items: center;
-        gap: 14px; /* 로고 간격 조절 */
+        gap: 14px;
 
         img.icon-img {
             width: 30px;
             height: 30px;
-            display: inline-block; /* 세로 쌓임 방지 */
+            display: inline-block;
             object-fit: contain;
         }
     }
