@@ -8,11 +8,7 @@
   .filter-title {
     font-size: 1.8rem;
     font-weight: 700;
-<<<<<<< HEAD
-    color: #1a2a2a; // 진한 딥그린 느낌
-=======
     color: #1a2a2a;
->>>>>>> main
     margin-bottom: 4px;
   }
 
@@ -52,10 +48,6 @@
         color: #1a2a2a;
       }
 
-<<<<<<< HEAD
-      /* 펼침/접힘 애니메이션 구현하려면 여기서 rotate 조절 */
-=======
->>>>>>> main
       &.collapsed .toggle-btn {
         transform: rotate(0deg);
       }
@@ -70,53 +62,7 @@
   }
 
   /* ======================
-<<<<<<< HEAD
-     PRICE SLIDER
-  ====================== */
-  .price-slider {
-  position: relative;
-  width: 100%;
-  padding: 20px 0;  // 👈 높이 확보, 버튼/텍스트 다 겹치지 않게
-  margin-bottom: 8px; 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  input[type="range"] {
-    -webkit-appearance: none;
-    position: absolute; // 👈 겹쳐놓기
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100%;
-
-    &::-webkit-slider-runnable-track {
-      height: 4px;
-      background: #cce7df;
-      border-radius: 5px;
-    }
-
-    &::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 18px;
-      height: 18px;
-      background: #24a889;
-      border-radius: 50%;
-      cursor: pointer;
-      margin-top: -7px;
-    }
-  }
-}
-
-.price-values {
-  margin-top: 12px;  // 🔥 슬라이더와 텍스트 간격 벌림
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.4rem;
-  color: #1a2a2a;
-}
-=======
-     PRICE SLIDER — 최종 해결본
+     PRICE SLIDER — main 버전
   ====================== */
   .price-slider {
     position: relative;
@@ -134,7 +80,7 @@
     background: #cce7df;
     border-radius: 5px;
     transform: translateY(-50%);
-    z-index: 0; /* 트랙이 가장 아래로 */
+    z-index: 0;
   }
 
   /* 공통 range */
@@ -146,30 +92,27 @@
     top: 50%;
     transform: translateY(-50%);
     background: none;
-    pointer-events: none; /* 기본 비활성화 */
-    z-index: 3; /* 트랙 위에 위치 */
+    pointer-events: none;
+    z-index: 3;
   }
 
-  /* 트랙은 투명 */
   .price-slider input[type="range"]::-webkit-slider-runnable-track {
     height: 4px;
     background: transparent;
   }
 
-  /* thumb */
   .price-slider input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 18px;
     height: 18px;
     background: #24a889;
     border-radius: 50%;
-    pointer-events: auto; /* thumb만 클릭 가능 */
+    pointer-events: auto;
     cursor: pointer;
     position: relative;
-    z-index: 10; /* 공이 가장 위로 */
+    z-index: 10;
   }
 
-  /* min-range가 무조건 가장 위 */
   .price-slider .min-range {
     z-index: 12;
     pointer-events: auto;
@@ -186,7 +129,6 @@
     font-size: 1.4rem;
     color: #1a2a2a;
   }
->>>>>>> main
 
   /* ======================
      RATING BUTTONS
@@ -207,21 +149,13 @@
 
       &:hover {
         background: #24a889;
-<<<<<<< HEAD
-        color: white;
-=======
         color: #fff;
->>>>>>> main
       }
     }
   }
 
   /* ======================
-<<<<<<< HEAD
      CHECKBOX LIST
-=======
-     체크박스
->>>>>>> main
   ====================== */
   .checkbox-list {
     display: flex;
@@ -239,11 +173,7 @@
       input[type="checkbox"] {
         width: 18px;
         height: 18px;
-<<<<<<< HEAD
-        accent-color: #24a889; // 민트 체크 활성화
-=======
         accent-color: #24a889;
->>>>>>> main
         cursor: pointer;
       }
     }
