@@ -18,16 +18,37 @@ const FilterSidebar = () => {
         </div>
 
         <div className="filter-body">
-          {/* 슬라이더 영역 */}
+
+          {/* 가격 슬라이더 풀 구조 */}
           <div className="price-slider">
-            <input type="range" min="50" max="1200" />
-            <input type="range" min="50" max="1200" />
+
+            {/* 트랙 */}
+            <div className="price-slider-track"></div>
+
+            {/* 최소값(min) */}
+            <input
+              type="range"
+              className="min-range"
+              min="50"
+              max="1200"
+              defaultValue="200"
+            />
+
+            {/* 최대값(max) */}
+            <input
+              type="range"
+              className="max-range"
+              min="50"
+              max="1200"
+              defaultValue="900"
+            />
           </div>
 
           <div className="price-values">
             <span>$50</span>
             <span>$1200</span>
           </div>
+
         </div>
       </div>
 

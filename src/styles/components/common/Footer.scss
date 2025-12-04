@@ -1,9 +1,10 @@
 .footer {
-    background: #279c79; /* ← 더 진한 초록색으로 변경 */
+    background: #279c79;
     width: 100%;
-    padding: 60px 0 0 0;
+    padding: 220px 0 0 0;   /* newsletter 높이만큼 footer 위쪽 확보 */
     border-radius: 30px 30px 0 0;
-    position: relative;
+    position: relative;      /* newsletter absolute 기준점 */
+    overflow: visible;
 }
 
 /* =========================================================
@@ -11,18 +12,21 @@
    ========================================================= */
 
 .newsletter-wrapper {
+    position: absolute;
+    top: -95px;     /* ↓ 기존 -160px → -120px로 낮춰서 더 아래로 */
+    left: 0;
     width: 100%;
+
     display: flex;
     justify-content: center;
 
-    position: relative;
-    top: -170px;   /* footer 위로 겹치게 */
-    z-index: 10;
+    z-index: 5;      /* ↓ header보다 낮게! header가 10~100대라면 OK */
 }
 
 .newsletter {
     width: 90%;
     max-width: 1240px;
+
     background: #99d3c3;
     border-radius: 20px;
     padding: 48px;
@@ -31,11 +35,11 @@
     justify-content: space-between;
     align-items: center;
 
-    /* 떠 있는 카드 느낌 */
     box-shadow: 0 18px 28px rgba(0, 0, 0, 0.18);
 }
 
 /* 텍스트 */
+
 .newsletter-left {
     width: 50%;
     display: flex;
@@ -78,7 +82,6 @@
     padding: 12px 16px;
     border-radius: 8px 0 0 8px;
     font-size: 14px;
-    outline: none;
 }
 
 .newsletter-btn {
@@ -96,7 +99,6 @@
     }
 }
 
-/* 이미지 */
 .newsletter-right {
     margin-left: 10px;
 }
@@ -112,7 +114,7 @@
    ========================================================= */
 
 .footer-links {
-    margin-top: -60px; /* newsletter가 떠 있으므로 margin 줄임 */
+    margin-top: 0; /* 더 이상 음수 margin 필요 없음 */
 
     .inner {
         width: 90%;
@@ -130,7 +132,6 @@
     gap: 200px;
 }
 
-/* Link Columns */
 .link-columns {
     display: flex;
     gap: 60px;
@@ -147,9 +148,9 @@
         }
 
         ul {
-            list-style: none;
             padding: 0;
             margin: 0;
+            list-style: none;
 
             li {
                 margin-bottom: 6px;
@@ -167,29 +168,8 @@
     }
 }
 
-.follow-us {
-    h4 {
-        font-size: 16px;
-        font-weight: 700;
-        margin-bottom: 12px;
-    }
-
-    .follow-icons {
-        display: flex;
-        gap: 16px;
-
-        .follow-link {
-            width: 36px;
-            height: 36px;
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-    }
-}
-
 /* =========================================================
-   ========== Bottom ==========
+   ========== Footer Bottom ==========
    ========================================================= */
 
 .footer-bottom {
@@ -205,8 +185,41 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+
         font-size: 14px;
         line-height: 1.6;
         color: #99d3c3;
+    }
+}
+
+.social-links {
+    .logo {
+        font-size: 26px;      /* 기존보다 2~4px 증가 */
+        font-weight: 800;
+        color: #ffffff;
+        margin-bottom: 8px;
+    }
+
+    .description {
+        font-size: 15px;      /* 기존 footer 항목보다 조금 더 큼 */
+        font-weight: 500;
+        color: #e8f7ef;        /* 연한 민트/화이트 느낌 */
+        line-height: 1.5;
+        max-width: 350px;      /* 길게 퍼지지 않고 딱 보기 좋게 */
+    }
+}
+
+.follow-us {
+    .follow-icons {
+        display: flex;
+        align-items: center;
+        gap: 14px; /* 로고 간격 조절 */
+
+        img.icon-img {
+            width: 30px;
+            height: 30px;
+            display: inline-block; /* 세로 쌓임 방지 */
+            object-fit: contain;
+        }
     }
 }
