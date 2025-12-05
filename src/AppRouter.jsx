@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import MainLayout from "./components/layouts/MainLayout";
 import AuthLayout from "./components/layouts/AuthLayout";
 import MyPageLayout from "./components/layouts/MyPageLayout";
@@ -136,6 +136,9 @@ const AppRouter = () => {
       <Route path="google/callback" element={<GoogleCallbackPage />} />
      </Route>
     </Route>
+
+    {/* 편의용 별칭: /wishlist -> /mypage/wishlist */}
+    <Route path="wishlist" element={<Navigate to="/mypage/wishlist" replace />} />
 
     {/* 404 */}
     <Route path="*" element={<NotFoundPage />} />
