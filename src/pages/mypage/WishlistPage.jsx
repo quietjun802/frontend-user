@@ -7,16 +7,14 @@ const WishlistPage = () => {
   const [wishlistHotels, setWishlistHotels] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Mock 데이터 - 실제로는 API에서 가져와야 합니다
   useEffect(() => {
-    // 임시로 로컬 스토리지에서 가져오거나 Mock 데이터 사용
+    // 현재는 목업 데이터를 사용합니다. 실제 API로 교체 가능합니다.
     const loadWishlist = () => {
-      // Mock 데이터 예시
       const mockWishlist = [
         {
           id: 1,
           name: "Grand Hyatt Seoul",
-          location: "Seoul, South Korea",
+          location: "서울",
           image: "/images/hotel-1.jpg",
           imageCount: 8,
           stars: 5,
@@ -29,7 +27,7 @@ const WishlistPage = () => {
         {
           id: 2,
           name: "Paradise City",
-          location: "Incheon, South Korea",
+          location: "인천",
           image: "/images/hotel-2.jpg",
           imageCount: 12,
           stars: 5,
@@ -42,7 +40,7 @@ const WishlistPage = () => {
         {
           id: 3,
           name: "The Shilla Seoul",
-          location: "Seoul, South Korea",
+          location: "서울",
           image: "/images/hotel-3.png",
           imageCount: 10,
           stars: 5,
@@ -54,9 +52,6 @@ const WishlistPage = () => {
         },
       ];
 
-      // 실제 구현시에는 localStorage나 API에서 가져옴
-      // const savedWishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-      
       setWishlistHotels(mockWishlist);
       setLoading(false);
     };
@@ -65,11 +60,7 @@ const WishlistPage = () => {
   }, []);
 
   const handleRemoveWishlist = (hotelId) => {
-    // 찜 목록에서 제거
     setWishlistHotels((prev) => prev.filter((hotel) => hotel.id !== hotelId));
-    
-    // 실제 구현시에는 API 호출 및 localStorage 업데이트
-    // localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
   };
 
   if (loading) {
@@ -83,10 +74,8 @@ const WishlistPage = () => {
   return (
     <div className="wishlist-page">
       <div className="wishlist-page__header">
-        <h1 className="wishlist-page__title">내 찜 목록</h1>
-        <p className="wishlist-page__subtitle">
-          찜한 호텔 {wishlistHotels.length}개
-        </p>
+        <h1 className="wishlist-page__title">찜 목록</h1>
+        <p className="wishlist-page__subtitle">찜한 숙소 {wishlistHotels.length}개</p>
       </div>
 
       <div className="wishlist-page__content">
@@ -95,11 +84,7 @@ const WishlistPage = () => {
         ) : (
           <div className="wishlist-page__list">
             {wishlistHotels.map((hotel) => (
-              <WishlistCard
-                key={hotel.id}
-                hotel={hotel}
-                onRemove={handleRemoveWishlist}
-              />
+              <WishlistCard key={hotel.id} hotel={hotel} onRemove={handleRemoveWishlist} />
             ))}
           </div>
         )}

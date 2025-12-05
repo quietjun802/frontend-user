@@ -11,72 +11,52 @@ const WishlistCard = ({ hotel, onRemove }) => {
 
   const handleRemoveWishlist = (e) => {
     e.stopPropagation();
-    if (onRemove) {
-      onRemove(hotel.id);
-    }
+    if (onRemove) onRemove(hotel.id);
   };
 
   return (
-    <div
-      className="wishlist-card"
-      onClick={() => navigate(`/hotels/${hotel.id}`)}
-    >
-      {/* 왼쪽 이미지 */}
+    <div className="wishlist-card" onClick={() => navigate(`/hotels/${hotel.id}`)}>
       <div className="wishlist-card__image">
-        <img src={hotel.image} alt={hotel.name} />
-        {hotel.imageCount && (
-          <div className="image-count">{hotel.imageCount} images</div>
-        )}
+        <img src={hotel.image || "/images/hotel-placeholder.png"} alt={hotel.name} />
+        {hotel.imageCount && <div className="image-count">{hotel.imageCount} images</div>}
       </div>
 
-      {/* 오른쪽 콘텐츠 */}
       <div className="wishlist-card__content">
-        {/* 상단: 정보 + 가격 */}
         <div className="wishlist-card__header">
           <div className="wishlist-card__info">
             <h3 className="hotel-name">{hotel.name}</h3>
-            <div className="hotel-location">📍 {hotel.location}</div>
+            <div className="hotel-location">위치: {hotel.location}</div>
 
             <div className="hotel-meta">
               {hotel.stars && (
                 <span className="hotel-stars">
-                  {"⭐".repeat(hotel.stars)} {hotel.stars} Star Hotel
+                  {Array.from({ length: hotel.stars }).map((_, i) => (
+                    <span key={i}>★</span>
+                  ))} {hotel.stars}성급
                 </span>
               )}
-              {hotel.amenities && (
-                <span className="hotel-amenities">
-                  🏨 {hotel.amenities}+ Amenities
-                </span>
-              )}
+              {hotel.amenities && <span className="hotel-amenities">편의시설 {hotel.amenities}개</span>}
             </div>
 
             {hotel.rating && (
               <div className="hotel-rating">
                 <span className="rating-score">{hotel.rating}</span>
-                <span className="rating-label">{hotel.ratingLabel || "Very Good"}</span>
-                {hotel.reviews && (
-                  <span className="rating-reviews">{hotel.reviews} reviews</span>
-                )}
+                <span className="rating-label">{hotel.ratingLabel || "매우 좋음"}</span>
+                {hotel.reviews && <span className="rating-reviews">{hotel.reviews}건의 후기</span>}
               </div>
             )}
           </div>
 
           <div className="wishlist-card__price">
-            <div className="price-label">starting from</div>
-            <div className="price-amount">
-              ₩{Number(price).toLocaleString()}/night
-            </div>
-            <div className="price-note">excl. tax</div>
+            <div className="price-label">시작가</div>
+            <div className="price-amount">{Number(price).toLocaleString()}원/박</div>
+            <div className="price-note">세금 별도</div>
           </div>
         </div>
 
-        {/* 하단: 버튼 */}
         <div className="wishlist-card__footer">
-          <button
-            className="remove-wishlist-button"
-            onClick={handleRemoveWishlist}
-          >
-            💔 Remove
+          <button className="remove-wishlist-button" onClick={handleRemoveWishlist}>
+            찜 해제
           </button>
 
           <button
@@ -86,7 +66,7 @@ const WishlistCard = ({ hotel, onRemove }) => {
               navigate(`/hotels/${hotel.id}`);
             }}
           >
-            View Details
+            상세 보기
           </button>
         </div>
       </div>
@@ -95,4 +75,5 @@ const WishlistCard = ({ hotel, onRemove }) => {
 };
 
 export default WishlistCard;
+
 
