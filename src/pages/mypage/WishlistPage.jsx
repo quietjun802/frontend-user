@@ -84,11 +84,7 @@ const WishlistPage = () => {
         ) : (
           <div className="wishlist-page__list">
             {wishlistHotels.map((hotel) => (
-              <WishlistCard
-                key={hotel.id}
-                hotel={hotel}
-                onRemove={handleRemoveWishlist}
-              />
+              <WishlistCard key={hotel.id} hotel={hotel} onRemove={handleRemoveWishlist} />
             ))}
           </div>
         )}
