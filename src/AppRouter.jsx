@@ -42,6 +42,7 @@ import FaqPage from "./pages/support/FaqPage";
 import NoticeListPage from "./pages/support/NoticeListPage";
 import NoticeDetailPage from "./pages/support/NoticeDetailPage";
 import ContactPage from "./pages/support/ContactPage";
+import SupportPage from "./pages/support/SupportPage";
 
 import NotFoundPage from "./pages/common/NotFoundPage";
 
@@ -88,7 +89,7 @@ const AppRouter = () => {
 
     {/* 고객센터 / 공지 / FAQ / 문의 */}
     <Route path="support">
-     <Route index element={<FaqPage />} />
+     <Route index element={<SupportPage />} />
      <Route path="faq" element={<FaqPage />} />
      <Route path="notices" element={<NoticeListPage />} />
      <Route path="notices/:noticeId" element={<NoticeDetailPage />} />
