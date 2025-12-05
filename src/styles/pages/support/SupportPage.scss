@@ -4,11 +4,7 @@
 .support-page {
   width: 100%;
   background: linear-gradient(135deg, #f5f7fa 0%, #eceff7 100%);
-  /* Make page height natural and avoid excessive whitespace */
-  min-height: 60vh;
-  /* Ensure there's room for newsletter/overlays and keep footer clear */
-  padding-bottom: 220px;
-  position: relative;
+  min-height: calc(100vh + 1200px);
 }
 
 .support-header {
@@ -34,90 +30,18 @@
 }
 
 .support-container {
-  padding: 40px 24px 80px;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 60px 24px 120px;
   display: flex;
   flex-direction: column;
-  gap: 48px;
-  position: relative;
-  z-index: 2; /* keep main content above floating newsletter */
+  gap: 80px;
 }
-
-/* Landing action cards (index) */
-.support-actions .action-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  align-items: center;
-  /* Give the action row a compact height so it sits closer to banner */
-  min-height: 220px;
-}
-
-.action-card {
-  background: transparent;
-  border: none;
-  text-align: left;
-  padding: 12px 8px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.action-card h3 {
-  font-size: 36px;
-  font-weight: 800;
-  margin: 0 0 8px 0;
-  color: #0b6b63;
-  line-height: 1.05;
-}
-
-.action-card p {
-  margin: 0;
-  color: #666;
-}
-
-.action-card:hover h3 {
-  color: #094a44;
-}
-
-/* Subpage back button */
-.support-subnav {
-  max-width: 1200px;
-  margin: 16px auto 0;
-  padding: 0 24px;
-}
-
-.support-back {
-  background: transparent;
-  border: none;
-  color: #0b6b63;
-  font-weight: 700;
-  cursor: pointer;
-  font-size: 14px;
-  padding: 6px 8px;
-}
-
-.support-back:hover {
-  color: #094a44;
-}
-
-/* Center action cards content for symmetry */
-.support-actions .action-cards {
-  justify-items: center;
-}
-
-.action-card { text-align: center; align-items: center; }
 
 /* Make newsletter flow below content on the support page to avoid overlap */
 .support-page .newsletter-wrapper {
   position: static !important;
   top: auto !important;
-  margin-top: 48px;
-  margin-bottom: 160px; /* give extra room so newsletter doesn't collide with footer */
+  margin-top: 24px;
   width: 100%;
-  z-index: 1;
 }
 
 /* FAQ Section */
