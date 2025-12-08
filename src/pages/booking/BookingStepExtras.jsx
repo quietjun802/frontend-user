@@ -2,13 +2,9 @@ import React, { useMemo, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { mockHotelRooms } from "../../api/mockHotelRooms";
 import { mockHotelDetail } from "../../api/mockHotelDetail";
+import BookingSummaryCard from "./BookingSummaryCard";
+import { extrasOptions } from "./extrasOptions";
 import "../../styles/pages/booking/BookingStep.scss";
-
-const extrasOptions = [
-  { id: "breakfast", label: "조식 포함", price: 15000 },
-  { id: "pickup", label: "공항 픽업", price: 30000 },
-  { id: "lateCheckout", label: "레이트 체크아웃", price: 20000 },
-];
 
 const BookingStepExtras = () => {
   const navigate = useNavigate();
@@ -96,65 +92,43 @@ const BookingStepExtras = () => {
               결제 단계
             </button>
           </div>
+
+          <div className="bottom-group">
+            <div className="booking-section">
+              <h3 className="section-title">추천 옵션 & 혜택</h3>
+              <ul className="info-list">
+                <li>조식 포함 시 체크아웃 연장(최대 1시간) 요청 가능</li>
+                <li>공항 픽업은 항공편 정보 입력 시 대기시간 단축</li>
+                <li>레이트 체크아웃은 가용 객실에 따라 조정됩니다</li>
+              </ul>
+            </div>
+
+            <div className="booking-section">
+              <h3 className="section-title">유의사항</h3>
+              <ul className="info-list">
+                <li>옵션 금액은 총액에 즉시 반영됩니다.</li>
+                <li>현장 결제 불가 옵션은 온라인 결제만 제공됩니다.</li>
+                <li>변경/취소는 체크인 24시간 전까지 가능합니다.</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         {/* RIGHT: summary */}
         <aside className="booking-right">
-          <div className="hotel-summary">
-            <div className="hotel-image">
-              <img src={hotel.images[0]} alt={hotel.name} />
-            </div>
-
-            <div className="hotel-content">
-              <h3 className="hotel-name">{hotel.name}</h3>
-              <p className="hotel-location">
-                {hotel.city} • {hotel.location}
-              </p>
-              <div className="hotel-rating">
-                {hotel.ratingAverage} • {hotel.ratingCount} reviews
-              </div>
-
-              <div className="summary-box">
-                <div>
-                  <strong>객실</strong>
-                  <p>{room.name}</p>
-                </div>
-                <div>
-                  <strong>숙박일</strong>
-                  <p>{nights}박</p>
-                </div>
-                <div>
-                  <strong>옵션</strong>
-                  <p>
-                    {extras.size > 0
-                      ? Array.from(extras)
-                          .map((id) => extrasOptions.find((o) => o.id === id)?.label)
-                          .join(", ")
-                      : "선택 없음"}
-                  </p>
-                </div>
-              </div>
-
-              <div className="price-breakdown">
-                <div>
-                  <span>객실 ({nights}박)</span>
-                  <strong>₩{roomTotal.toLocaleString()}</strong>
-                </div>
-                <div>
-                  <span>옵션</span>
-                  <strong>₩{extrasTotal.toLocaleString()}</strong>
-                </div>
-                <div className="total">
-                  <span>예상 결제 금액</span>
-                  <strong>₩{total.toLocaleString()}</strong>
-                </div>
-              </div>
-
-              <button className="btn-primary" onClick={handleNext}>
-                결제 단계로 이동
-              </button>
-            </div>
-          </div>
+          <BookingSummaryCard
+            hotel={hotel}
+            roomName={room.name}
+            nights={nights}
+            checkIn={checkIn}
+            checkOut={checkOut}
+            guests={guests}
+            extras={Array.from(extras)}
+            roomPrice={room.price}
+          />
+          <button className="btn-primary summary-action" onClick={handleNext}>
+            결제 단계로 이동
+          </button>
         </aside>
       </div>
     </div>

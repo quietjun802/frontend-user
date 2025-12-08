@@ -2,6 +2,8 @@ import React, { useMemo, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { mockHotelRooms } from "../../api/mockHotelRooms";
 import { mockHotelDetail } from "../../api/mockHotelDetail";
+import BookingSummaryCard from "./BookingSummaryCard";
+import { extrasOptions } from "./extrasOptions";
 import "../../styles/pages/booking/BookingStep.scss";
 
 const BookingStepRoom = () => {
@@ -14,6 +16,7 @@ const BookingStepRoom = () => {
   const checkOut = qs.get("checkOut");
   const guests = qs.get("guests") || "2";
   const initialRoomId = qs.get("roomId");
+  const extrasFromQs = qs.get("extras")?.split(",").filter(Boolean) || [];
 
   const [selectedRoom, setSelectedRoom] = useState(
     initialRoomId || mockHotelRooms[0].id
@@ -33,6 +36,9 @@ const BookingStepRoom = () => {
     if (checkOut) params.set("checkOut", checkOut);
     params.set("guests", guests);
     params.set("roomId", selectedRoom);
+    if (extrasFromQs.length > 0) {
+      params.set("extras", extrasFromQs.join(","));
+    }
     navigate(`/booking/${hotelId}/extras?${params.toString()}`);
   };
 
@@ -85,59 +91,23 @@ const BookingStepRoom = () => {
 
         {/* RIGHT: summary */}
         <aside className="booking-right">
-          <div className="hotel-summary">
-            <div className="hotel-image">
-              <img src={hotel.images[0]} alt={hotel.name} />
-            </div>
-
-            <div className="hotel-content">
-              <h3 className="hotel-name">{hotel.name}</h3>
-              <p className="hotel-location">
-                {hotel.city} • {hotel.location}
-              </p>
-              <div className="hotel-rating">
-                {hotel.ratingAverage} • {hotel.ratingCount} reviews
-              </div>
-
-              <div className="hotel-price">
-                ₩{hotel.basePrice.toLocaleString()} <span>/night</span>
-              </div>
-
-              <div className="summary-box">
-                <div>
-                  <strong>체크인</strong>
-                  <p>{checkIn ? new Date(checkIn).toLocaleDateString() : "-"}</p>
-                </div>
-                <div>
-                  <strong>체크아웃</strong>
-                  <p>
-                    {checkOut ? new Date(checkOut).toLocaleDateString() : "-"}
-                  </p>
-                </div>
-                <div>
-                  <strong>인원</strong>
-                  <p>{guests}명</p>
-                </div>
-                <div>
-                  <strong>숙박일</strong>
-                  <p>{nights}박</p>
-                </div>
-                <div>
-                  <strong>객실</strong>
-                  <p>
-                    {
-                      mockHotelRooms.find((r) => r.id === selectedRoom)?.name ||
-                      "-"
-                    }
-                  </p>
-                </div>
-              </div>
-
-              <button className="btn-primary" onClick={handleNext}>
-                옵션 선택으로 이동
-              </button>
-            </div>
-          </div>
+          <BookingSummaryCard
+            hotel={hotel}
+            roomName={
+              mockHotelRooms.find((r) => r.id === selectedRoom)?.name || "-"
+            }
+            nights={nights}
+            checkIn={checkIn}
+            checkOut={checkOut}
+            guests={guests}
+            extras={extrasFromQs}
+            roomPrice={
+              mockHotelRooms.find((r) => r.id === selectedRoom)?.price || 0
+            }
+          />
+          <button className="btn-primary summary-action" onClick={handleNext}>
+            옵션 선택으로 이동
+          </button>
         </aside>
       </div>
     </div>
